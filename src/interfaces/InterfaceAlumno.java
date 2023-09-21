@@ -9,7 +9,7 @@ public interface InterfaceAlumno<Alumno> {
 
     public List<Alumno> listarAlumnos();
 
-    public Alumno buscarAlumno(int libretaUniversitaria);
+    public Alumno buscarAlumno(long legajo);
 
     public Alumno buscarAlumnoPorGenero(String genero);
 }

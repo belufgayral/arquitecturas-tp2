@@ -1,5 +1,9 @@
 package factories;
 
+import repositories.AlumnoCarreraRepository;
+import repositories.AlumnoRepository;
+import repositories.CarreraRepository;
+
 import java.sql.SQLException;
 
 public abstract class Factory {
@@ -14,5 +18,8 @@ public abstract class Factory {
         }
     }
     //crear los repository
-    //...
+    public abstract AlumnoRepository getAlumnoRepository();
+    public abstract CarreraRepository getCarreraRepository();
+    public abstract AlumnoCarreraRepository getAlumnoCarreraRepository();
+
 }
