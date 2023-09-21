@@ -11,7 +11,7 @@ public class AlumnoCarrera {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "idCarrera")
-	private Carrera carrera;git a
+	private Carrera carrera;
 	@Column
 	private Date fechaInscripcion;
 	@Column
