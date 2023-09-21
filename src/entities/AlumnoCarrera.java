@@ -7,11 +7,11 @@ public class AlumnoCarrera {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "idAlumno")
-	private int idAlumno;
+	private Alumno alumno;
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "idCarrera")
-	private int idCarrera;
+	private Carrera carrera;git a
 	@Column
 	private Date fechaInscripcion;
 	@Column
