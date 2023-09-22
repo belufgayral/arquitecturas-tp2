@@ -9,5 +9,5 @@ public interface InterfaceCarrera<Carrera> {
     public void crearCarrera(Carrera c);
     public void eliminarCarrera(Carrera c);
     public void updateCarrera(Carrera c);
-    public List<Carrera> listarCarreras();
+    public List<Carrera> listarCarrerasConAlumnosIncriptos();
 }

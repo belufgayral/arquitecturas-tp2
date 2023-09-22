@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+
 @Entity
 public class AlumnoCarrera {
 	@Id
@@ -27,6 +28,14 @@ public class AlumnoCarrera {
 		this.carrera = carrera;
 		this.fechaInscripcion = fechaInscripcion;
 		this.graduado = graduado;
+	}
+
+	public AlumnoCarrera(Alumno alumno, Carrera carrera) {
+		super();
+		this.alumno = alumno;
+		this.carrera = carrera;
+		this.fechaInscripcion =  new Date();
+		this.graduado = false;
 	}
 
 	public Alumno getAlumno() {

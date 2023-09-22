@@ -4,7 +4,9 @@ import repositories.AlumnoCarreraRepository;
 import repositories.AlumnoRepository;
 import repositories.CarreraRepository;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class MySQLFactory extends Factory{
     public static MySQLFactory instance;
@@ -15,6 +17,13 @@ public class MySQLFactory extends Factory{
     private static AlumnoCarreraRepository alumnoCarrera;
 
     private MySQLFactory(){
+    }
+
+    public EntityManager connection (){
+        if(emf == null) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
+        }
+        return emf.createEntityManager();
     }
 
     public static Factory getInstance(){

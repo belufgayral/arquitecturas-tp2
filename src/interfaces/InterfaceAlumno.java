@@ -1,5 +1,8 @@
 package interfaces;
 
+import entities.Alumno;
+import entities.Carrera;
+
 import java.util.List;
 
 public interface InterfaceAlumno<Alumno> {
@@ -11,5 +14,6 @@ public interface InterfaceAlumno<Alumno> {
 
     public Alumno buscarAlumno(long legajo);
 
-    public Alumno buscarAlumnoPorGenero(String genero);
+    public List<Alumno> buscarAlumnoPorGenero(String genero);
+    public List<Alumno> listarAlumnosPorCarreraFiltradoPor(Carrera c, String ciudad);
 }
