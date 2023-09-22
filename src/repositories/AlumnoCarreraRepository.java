@@ -13,6 +13,11 @@ import java.util.List;
 
 public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCarrera> {
 
+    private EntityManager em;
+    public AlumnoCarreraRepository(EntityManager e){
+        this.em=e;
+    }
+
     @Override
     public void crearAlumnoCarrera(Alumno a, Carrera c) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");

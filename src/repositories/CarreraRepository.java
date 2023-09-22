@@ -10,6 +10,10 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class CarreraRepository implements InterfaceCarrera<Carrera> {
+    private EntityManager em;
+    public CarreraRepository(EntityManager e){
+        this.em=e;
+    }
     @Override
     public void crearCarrera(Carrera c) {
 

@@ -1,23 +1,25 @@
 package entities;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class AlumnoCarrera {
-	@Id
+public class AlumnoCarrera implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idAlumno")
+	@MapsId
 	private Alumno alumno;
-	@Id
 	@ManyToOne
 	@JoinColumn(name = "idCarrera")
+	@MapsId
 	private Carrera carrera;
 	@Column
 	private Date fechaInscripcion;
 	@Column
 	private boolean graduado;
-	
+
 	public AlumnoCarrera() {
 		super();
 	}
@@ -28,14 +30,6 @@ public class AlumnoCarrera {
 		this.carrera = carrera;
 		this.fechaInscripcion = fechaInscripcion;
 		this.graduado = graduado;
-	}
-
-	public AlumnoCarrera(Alumno alumno, Carrera carrera) {
-		super();
-		this.alumno = alumno;
-		this.carrera = carrera;
-		this.fechaInscripcion =  new Date();
-		this.graduado = false;
 	}
 
 	public Alumno getAlumno() {
