@@ -11,19 +11,17 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class AlumnoRepository implements InterfaceAlumno<Alumno> {
+    private EntityManager em;
+    public AlumnoRepository(EntityManager e){
+        this.em=e;
+    }
     @Override
     public void crearAlumno(Alumno a) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
         em.getTransaction().begin();
         em.persist(a);
         em.getTransaction().commit();
 
         em.close();
-        emf.close();
-
-
     }
 
     @Override
