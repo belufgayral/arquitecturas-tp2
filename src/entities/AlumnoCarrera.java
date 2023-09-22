@@ -1,16 +1,19 @@
 package entities;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Date;
+
 @Entity
-public class AlumnoCarrera {
-	@Id
+public class AlumnoCarrera implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "idAlumno")
+	@MapsId
 	private Alumno alumno;
-	@Id
 	@ManyToOne
 	@JoinColumn(name = "idCarrera")
+	@MapsId
 	private Carrera carrera;
 	@Column
 	private Date fechaInscripcion;
