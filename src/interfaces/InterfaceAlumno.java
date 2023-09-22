@@ -11,5 +11,5 @@ public interface InterfaceAlumno<Alumno> {
 
     public Alumno buscarAlumno(long legajo);
 
-    public Alumno buscarAlumnoPorGenero(String genero);
+    public List<Alumno> buscarAlumnoPorGenero(String genero);
 }
