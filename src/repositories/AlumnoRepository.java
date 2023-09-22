@@ -12,16 +12,17 @@ import java.util.List;
 
 public class AlumnoRepository implements InterfaceAlumno<Alumno> {
     private EntityManager em;
+    
     public AlumnoRepository(EntityManager e){
         this.em=e;
     }
+    
     @Override
     public void crearAlumno(Alumno a) {
-        em.getTransaction().begin();
+    	em.getTransaction().begin();
         em.persist(a);
         em.getTransaction().commit();
-
-        em.close();
+        //em.close();
     }
 
     @Override
@@ -31,29 +32,19 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
 
     @Override
     public List<Alumno> listarAlumnos() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
         TypedQuery<Alumno> query = em.createQuery("SELECT a " +
                         "FROM Alumno a " +
                         " ORDER BY a.nombre ASC "
                 , Alumno.class);
 
         List<Alumno> alumnos = query.getResultList();
-
-
-        em.close();
-        emf.close();
-
+        
         return alumnos;
     }
 
     @Override
     public Alumno buscarAlumno(long libretaUniversitaria) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
-        TypedQuery<Alumno> query = em.createQuery("SELECT a " +
+    	TypedQuery<Alumno> query = em.createQuery("SELECT a " +
                         "FROM Alumno a " +
                         "WHERE a.legajo = :libretaUniversitariaBuscada"
                 , Alumno.class);
@@ -61,19 +52,12 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
 
         Alumno alumno = query.getSingleResult();
 
-        em.close();
-        emf.close();
-
         return alumno;
 
     }
 
     @Override
     public List<Alumno> buscarAlumnoPorGenero(String genero) {
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
         TypedQuery<Alumno> query = em.createQuery("SELECT a " +
                         "FROM Alumno a " +
                         "WHERE a.genero = :generoBuscado"
@@ -82,14 +66,9 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
 
         List<Alumno> alumnos = query.getResultList();
 
-        em.close();
-        emf.close();
         return alumnos;
     }
     public List<Alumno> listarAlumnosPorCarreraFiltradoPor(Carrera c,String ciudad) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
         TypedQuery<Alumno> query = em.createQuery("SELECT a , count(ac) AS inscriptos " +
                 " FROM  Alumno a INNER JOIN AlumnoCarrera ac " +
                 " WHERE :cc = ac.carrera AND :ciudad = a.ciudad" +
@@ -99,8 +78,6 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
         query.setParameter("ciudad", ciudad);
         List<Alumno> alumnos = query.getResultList();
 
-        em.close();
-        emf.close();
         return alumnos;
     }
 }

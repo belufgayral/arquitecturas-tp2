@@ -14,23 +14,19 @@ import java.util.List;
 public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCarrera> {
 
     private EntityManager em;
+    
     public AlumnoCarreraRepository(EntityManager e){
         this.em=e;
     }
 
     //problemas con este metodo.
     @Override
-    public void crearAlumnoCarrera(Alumno a, Carrera c) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_2");
-        EntityManager em = emf.createEntityManager();
-
+    public void matricularAlumno(Alumno a, Carrera c) {
         em.getTransaction().begin();
         AlumnoCarrera ac = new AlumnoCarrera();
         em.persist(ac);
         em.getTransaction().commit();
-
         em.close();
-        emf.close();
     }
 
     @Override

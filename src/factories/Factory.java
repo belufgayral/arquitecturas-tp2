@@ -21,5 +21,6 @@ public abstract class Factory {
     public abstract AlumnoRepository getAlumnoRepository();
     public abstract CarreraRepository getCarreraRepository();
     public abstract AlumnoCarreraRepository getAlumnoCarreraRepository();
+	public abstract void closeConnection();
 
 }

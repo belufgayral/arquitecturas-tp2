@@ -2,11 +2,14 @@ package entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Carrera {
 	@Id
+	@GeneratedValue (strategy=GenerationType.AUTO)
 	private int id;
 	@Column
 	private String nombre;
@@ -15,9 +18,8 @@ public class Carrera {
 		super();
 	}
 	
-	public Carrera(int id, String nombre) {
+	public Carrera(String nombre) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 	}
 	

@@ -2,12 +2,15 @@ package entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
 
 @Entity
 public class Alumno {
 	@Id
+	@GeneratedValue (strategy=GenerationType.AUTO)
 	private int id;
 	@Column
 	private String nombre;
@@ -28,10 +31,9 @@ public class Alumno {
 		super();
 	}
 
-	public Alumno(int id, String nombre, String apellido, Date fechaNacimiento, String genero, long dni, String ciudad,
+	public Alumno(String nombre, String apellido, Date fechaNacimiento, String genero, long dni, String ciudad,
 			long legajo) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.fechaNacimiento = fechaNacimiento;

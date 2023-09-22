@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 
 public class MySQLFactory extends Factory{
     public static MySQLFactory instance;
+    private static EntityManagerFactory emf;
     private static EntityManager em;
 
     private static AlumnoRepository alumno;
@@ -21,10 +22,15 @@ public class MySQLFactory extends Factory{
 
     public static EntityManager getConnection (){
         if(em == null) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp2");
+            emf = Persistence.createEntityManagerFactory("tp2");
             em = emf.createEntityManager();
         }
         return em;
+    }
+    
+    public void closeConnection() {
+    	em.close();
+    	emf.close();
     }
 
     public static Factory getInstance(){
