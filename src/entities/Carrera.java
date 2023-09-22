@@ -34,4 +34,12 @@ public class Carrera {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Carrera{" +
+				"id=" + id +
+				", nombre='" + nombre + '\'' +
+				'}';
+	}
 }

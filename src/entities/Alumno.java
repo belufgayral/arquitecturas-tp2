@@ -102,4 +102,17 @@ public class Alumno {
 	public int getId() {
 		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "Alumno{" +
+				"nombre='" + nombre + '\'' +
+				", apellido='" + apellido + '\'' +
+				", fechaNacimiento=" + fechaNacimiento +
+				", genero='" + genero + '\'' +
+				", dni=" + dni +
+				", ciudad='" + ciudad + '\'' +
+				", legajo=" + legajo +
+				'}';
+	}
 }

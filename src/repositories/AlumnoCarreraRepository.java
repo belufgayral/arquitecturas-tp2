@@ -2,6 +2,7 @@ package repositories;
 
 import entities.Alumno;
 import entities.AlumnoCarrera;
+import entities.AlumnoCarreraId;
 import entities.Carrera;
 import interfaces.InterfaceAlumnoCarrera;
 
@@ -9,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.sql.Date;
 import java.util.List;
 
 public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCarrera> {
@@ -23,10 +25,15 @@ public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCar
     @Override
     public void matricularAlumno(Alumno a, Carrera c) {
         em.getTransaction().begin();
-        AlumnoCarrera ac = new AlumnoCarrera();
+
+        AlumnoCarreraId acId = new AlumnoCarreraId(a, c);
+        Date today = new Date(2023,12,30);
+        AlumnoCarrera ac = new AlumnoCarrera(acId, today, false);
+
         em.persist(ac);
         em.getTransaction().commit();
-        em.close();
+
+        //em.close();
     }
 
     @Override

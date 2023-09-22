@@ -40,7 +40,8 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
     }
 
     public List<Carrera> listarCarrerasConAlumnosIncriptos() {
-       TypedQuery<Carrera> query = em.createQuery("SELECT c , count(ac) AS inscriptos " +
+       TypedQuery<Carrera> query = em.createQuery(
+               "SELECT c , count(ac) AS inscriptos " +
                 " FROM  Carrera c INNER JOIN AlumnoCarrera ac " +
                 " WHERE ac.carrera = c" +
                 " GROUP BY c" +

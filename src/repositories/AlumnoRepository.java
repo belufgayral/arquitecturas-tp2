@@ -53,7 +53,6 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
         Alumno alumno = query.getSingleResult();
 
         return alumno;
-
     }
 
     @Override

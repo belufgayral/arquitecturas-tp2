@@ -23,6 +23,10 @@ public class AlumnoCarreraId implements Serializable {
 		this.carrera = carrera;
 	}
 
+	public AlumnoCarreraId() {
+
+	}
+
 	public Alumno getAlumno() {
 		return alumno;
 	}
