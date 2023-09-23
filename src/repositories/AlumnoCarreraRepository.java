@@ -26,9 +26,9 @@ public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCar
     public void matricularAlumno(Alumno a, Carrera c) {
         em.getTransaction().begin();
 
-        AlumnoCarreraId acId = new AlumnoCarreraId(a, c);
-        Date today = new Date(2023,12,30);
-        AlumnoCarrera ac = new AlumnoCarrera(acId, today, false);
+        //AlumnoCarreraId acId = new AlumnoCarreraId(a, c);
+        Date today = new Date(System.currentTimeMillis());
+        AlumnoCarrera ac = new AlumnoCarrera(new AlumnoCarreraId(a, c), today, false);
 
         em.persist(ac);
         em.getTransaction().commit();

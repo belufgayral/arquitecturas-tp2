@@ -1,5 +1,6 @@
 package repositories;
 
+import entities.Alumno;
 import entities.Carrera;
 import interfaces.InterfaceCarrera;
 
@@ -33,19 +34,32 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
     public void updateCarrera(Carrera c) {
 
     }
+    
+    public Carrera buscarCarreraPorNombre(String c) {
+    	TypedQuery<Carrera> query = em.createQuery("SELECT c " +
+                					"FROM Carrera c " +
+                					"WHERE c.nombre = :carreraBuscada"
+                					, Carrera.class);
+    	query.setParameter("carreraBuscada", c);
+
+    	Carrera carrera = query.getSingleResult();
+
+    	return carrera;
+    }
 
     @Override
     public List<Carrera> listarCarreras() {
         return null;
     }
 
+    //no anda
     public List<Carrera> listarCarrerasConAlumnosIncriptos() {
        TypedQuery<Carrera> query = em.createQuery(
-               "SELECT c , count(ac) AS inscriptos " +
-                " FROM  Carrera c INNER JOIN AlumnoCarrera ac " +
-                " WHERE ac.carrera = c" +
-                " GROUP BY c" +
-                " ORDER BY inscriptos DESC", Carrera.class);
+               "SELECT c, COUNT(ac) AS inscriptos " +
+                "FROM Carrera c JOIN c.carrera ac " +
+                "WHERE ac.id.carrera = c " +
+                "GROUP BY c " +
+                "ORDER BY inscriptos DESC", Carrera.class);
 
         List<Carrera> carreras = query.getResultList();
 

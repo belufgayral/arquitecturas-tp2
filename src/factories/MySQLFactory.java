@@ -4,9 +4,17 @@ import repositories.AlumnoCarreraRepository;
 import repositories.AlumnoRepository;
 import repositories.CarreraRepository;
 
+import helpers.GeneradorDatos;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import entities.Alumno;
+import entities.Carrera;
 
 public class MySQLFactory extends Factory{
     public static MySQLFactory instance;
@@ -18,6 +26,9 @@ public class MySQLFactory extends Factory{
     private static AlumnoCarreraRepository alumnoCarrera;
 
     private MySQLFactory(){
+    	this.poblarTablaAlumnos();
+    	this.poblarTablaCarreras();
+    	this.poblarTablaAlumnosCarreras();
     }
 
     public static EntityManager getConnection (){
@@ -62,5 +73,26 @@ public class MySQLFactory extends Factory{
             alumnoCarrera = new AlumnoCarreraRepository(this.getConnection());
         }
         return alumnoCarrera;
+    }
+    
+    public void poblarTablaAlumnos() {
+    	List<Alumno> l = new ArrayList<Alumno>(GeneradorDatos.crearDatosAlumno());
+    	
+    	for (Alumno alumno : l) {
+    		this.getAlumnoRepository().crearAlumno(alumno);
+    	}
+    }
+    
+    public void poblarTablaCarreras() {
+    	List<Carrera> l = new ArrayList<Carrera>(GeneradorDatos.crearDatosCarrera());
+    	
+    	for (Carrera carrera : l) {
+    		this.getCarreraRepository().crearCarrera(carrera);
+    	}
+    }
+    
+    public void poblarTablaAlumnosCarreras() {
+    	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(12345), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
+    	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(1234), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
     }
 }
