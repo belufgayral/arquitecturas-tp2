@@ -79,9 +79,9 @@ public class Main {
 		}
 		System.out.println("---------------");
 		
-		//Generar un reporte de las carreras, que para cada carrera incluya información de los
-		//inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
-		//los años de manera cronológica.
+		// 3) Generar un reporte de las carreras, que para cada carrera incluya información de los
+		//	  inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
+		//	  los años de manera cronológica.
 		
 		System.out.println("REPORTE DE LAS CARRERAS");
 		List<ReporteCarrerasDTO> reporte = carreraRep.reporteDeCarreras();
