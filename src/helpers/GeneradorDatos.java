@@ -30,13 +30,13 @@ public class GeneradorDatos {
 		Carrera c1 = new Carrera("tudai");
 	    Carrera c2 = new Carrera("sistemas");
 		Carrera c3 = new Carrera("economicas");
-	    
+
 	    List<Carrera> l = new ArrayList<Carrera>();
 	    
 	    l.add(c1);
 	    l.add(c2);
 		l.add(c3);
-	    
+
 	    return l;
 	}
 }

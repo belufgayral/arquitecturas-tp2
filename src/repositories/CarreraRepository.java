@@ -30,15 +30,6 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
         em.getTransaction().commit();
     }
 
-    @Override
-    public void eliminarCarrera(Carrera c) {
-        //TODO
-    }
-
-    @Override
-    public void updateCarrera(Carrera c) {
-    //TODO
-    }
     
     public Carrera buscarCarreraPorNombre(String c) {
     	TypedQuery<Carrera> query = em.createQuery("SELECT c " +
@@ -79,7 +70,7 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
 
     public List<ReporteCarrerasDTO> reporteDeCarreras(){
     	String querysql = """
-    			SELECT nombre AS carrera, anio, MAX(cant_inscriptos) AS cant_inscriptos, MAX(cant_graduados) AS cant_egresados
+    			SELECT nombre AS carrera,anio, MAX(cant_inscriptos) AS cant_inscriptos, MAX(cant_graduados) AS cant_egresados
     			FROM (
     			        SELECT c.nombre, YEAR(fechaGraduacion) as anio, COUNT(fechaGraduacion) AS cant_graduados, 0 AS cant_inscriptos
     			        FROM Carrera c LEFT JOIN AlumnoCarrera ac ON ac.idcarrera = c.id
@@ -99,21 +90,26 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
         List<ReporteCarrerasDTO> dtos = new ArrayList<>();
         for (Object[] fila:carreras){
             ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
+            // NOMBRE CARRERA
             newDTO.setNombreCarrera((String) fila[0]);
 
+            // FECHA
             Date fecha = (Date) fila[1];
             java.util.Calendar calendar = java.util.Calendar.getInstance();
             calendar.setTime(fecha);
             int anio = calendar.get(java.util.Calendar.YEAR);
             newDTO.setAnio((Integer) anio);
 
+            //INSCRIPTOS
             java.math.BigInteger bigInteger = (BigInteger) fila[2];
             int entero = bigInteger.intValue();
-            newDTO.setEgresados((Integer) entero);
+            newDTO.setInscriptos((Integer) entero);
 
+
+            //GRADUADOS
             java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
-            int entero2 = bigInteger.intValue();
-            newDTO.setRegulares((Integer) entero2);
+            int entero2 = bigInteger2.intValue();
+            newDTO.setEgresados((Integer) entero2);
 
             dtos.add(newDTO);
         }

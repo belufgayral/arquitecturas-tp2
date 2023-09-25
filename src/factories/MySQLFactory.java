@@ -1,11 +1,14 @@
 package factories;
 
+import entities.AlumnoCarrera;
+import entities.AlumnoCarreraId;
 import repositories.AlumnoCarreraRepository;
 import repositories.AlumnoRepository;
 import repositories.CarreraRepository;
 
 import helpers.GeneradorDatos;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,8 @@ public class MySQLFactory extends Factory{
     private static AlumnoCarreraRepository alumnoCarrera;
 
     private MySQLFactory(){
+        Date d1 = new Date(2026-1900,3-1,8);
+        Date d2 = new Date(2025-1900,3-1,8);
     	this.poblarTablaAlumnos();
     	this.poblarTablaCarreras();
     	this.poblarTablaAlumnosCarreras();
@@ -96,5 +101,12 @@ public class MySQLFactory extends Factory{
     	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(12345), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
         this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(123456), this.getCarreraRepository().buscarCarreraPorNombre("sistemas"));
         this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(1234567), this.getCarreraRepository().buscarCarreraPorNombre("economicas"));
+
+        Alumno a1 = this.getAlumnoRepository().buscarAlumno(12345);
+        Carrera c1 = this.getCarreraRepository().buscarCarreraPorNombre("tudai");
+        AlumnoCarreraId acID1 = new AlumnoCarreraId(a1, c1);
+        AlumnoCarrera ac1 = this.getAlumnoCarreraRepository().buscarAlumnoID(acID1);
+
+        this.getAlumnoCarreraRepository().GraduarAlumno(new Date(2026-1900,3-1,8), ac1);
     }
 }

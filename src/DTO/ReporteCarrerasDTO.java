@@ -5,13 +5,13 @@ import java.util.Date;
 public class ReporteCarrerasDTO {
     private String nombreCarrera;
     private int anio;
-    private int regulares;
+    private int inscriptos;
     private int egresados;
 
     public ReporteCarrerasDTO(String nombre, int egresados, int regulares, int anio){
         this.nombreCarrera = nombre;
         this.egresados = egresados;
-        this.regulares = regulares;
+        this.inscriptos = regulares;
         this.anio = anio;
     }
 
@@ -30,8 +30,8 @@ public class ReporteCarrerasDTO {
         return egresados;
     }
 
-    public int getRegulares() {
-        return regulares;
+    public int getInscriptos() {
+        return inscriptos;
     }
 
     public void setNombreCarrera(String nombreCarrera) {
@@ -46,13 +46,14 @@ public class ReporteCarrerasDTO {
         this.egresados = egresados;
     }
 
-    public void setRegulares(int regulares) {
-        this.regulares = regulares;
+    public void setInscriptos(int regulares) {
+        this.inscriptos = regulares;
     }
 
 	@Override
 	public String toString() {
-		return "CarreraAnioDTO [nombreCarrera=" + nombreCarrera + ", anio=" + anio + ", regulares=" + regulares
-				+ ", egresados=" + egresados + "]";
+		return "Reporte DTO => " +
+                "Carrera: " + nombreCarrera + ", año:" + anio + ", inscriptos:" + inscriptos
+				+ ", egresados:" + egresados;
 	}
 }

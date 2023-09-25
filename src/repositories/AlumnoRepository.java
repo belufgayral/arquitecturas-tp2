@@ -23,12 +23,6 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
     	em.getTransaction().begin();
         em.persist(a);
         em.getTransaction().commit();
-        //em.close();
-    }
-
-    @Override
-    public void deleteAlumno(int dni) {
-
     }
 
     @Override

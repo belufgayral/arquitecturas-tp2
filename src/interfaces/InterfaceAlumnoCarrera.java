@@ -1,14 +1,17 @@
 package interfaces;
 
 import entities.Alumno;
+import entities.AlumnoCarrera;
+import entities.AlumnoCarreraId;
 import entities.Carrera;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface InterfaceAlumnoCarrera<AlumnoCarrera> {
 
     public void matricularAlumno(Alumno a, Carrera c);
-    public void eliminarAlumnoCarrera(AlumnoCarrera ac);
-    public void updateAlumnoCarrera(AlumnoCarrera ac);
-    public List<AlumnoCarrera> listarAlumnosInscriptos();
+    public void GraduarAlumno(Date today, entities.AlumnoCarrera ac);
+    public entities.AlumnoCarrera buscarAlumnoID(AlumnoCarreraId id);
+
 }

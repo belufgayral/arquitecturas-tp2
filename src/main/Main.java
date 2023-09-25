@@ -30,11 +30,13 @@ public class Main {
 		Alumno a1 = new Alumno("Juan", "Pérez", new Date(1997 - 1900, 6 - 1, 20), "masculino", 36758625, "tandil",
 				12345678);
 		alumnoRep.crearAlumno(a1);
+		System.out.println(alumnoRep.buscarAlumno(12345678));
 		System.out.println("---------------");
 
 		// 2) B. Matricular un estudiante en una carrera
 		System.out.println("MATRICULAR UN ESTUDIANTE EN UNA CARRERA");
 		Carrera carrera = carreraRep.buscarCarreraPorNombre("economicas");
+		//MATRICULANDO A JUAN PEREZ EN ECONOMICAS.
 		alumnoCarreraRep.matricularAlumno(a1, carrera);
 		System.out.println("---------------");
 
@@ -42,21 +44,21 @@ public class Main {
 		System.out.println("LISTAR TODOS LOS ALUMNOS");
 		List<Alumno> alumnos = alumnoRep.listarAlumnos();
 		for (Alumno a : alumnos) {
-			System.out.println(a.toString());
+			System.out.println(a);
 		}
 		System.out.println("---------------");
 
 		// 2) D. Recuperar un estudiante, en base a su número de libreta universitaria.
 		System.out.println("ALUMNOS POR LU: 12345");
 		Alumno a3 = alumnoRep.buscarAlumno(12345);
-		System.out.println(a3.toString());
+		System.out.println(a3);
 		System.out.println("---------------");
 
 		//2) E. Recuperar todos los estudiantes, en base a su género.
 		System.out.println("ALUMNOS POR GÉNERO FEMENINO");
 		List<Alumno> l1 = alumnoRep.buscarAlumnoPorGenero("femenino");
 		for (Alumno a : l1) {
-			System.out.println(a.toString());
+			System.out.println(a);
 		}
 		System.out.println("---------------");
 
