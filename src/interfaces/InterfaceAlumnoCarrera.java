@@ -12,6 +12,6 @@ public interface InterfaceAlumnoCarrera<AlumnoCarrera> {
 
     public void matricularAlumno(Alumno a, Carrera c);
     public void GraduarAlumno(Date today, entities.AlumnoCarrera ac);
-    public entities.AlumnoCarrera buscarAlumnoID(AlumnoCarreraId id);
+    public AlumnoCarrera buscarAlumnoID(AlumnoCarreraId id);
 
 }

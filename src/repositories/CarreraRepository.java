@@ -97,19 +97,19 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
             Date fecha = (Date) fila[1];
             java.util.Calendar calendar = java.util.Calendar.getInstance();
             calendar.setTime(fecha);
-            int anio = calendar.get(java.util.Calendar.YEAR);
-            newDTO.setAnio((Integer) anio);
+            int anio = (Integer) calendar.get(java.util.Calendar.YEAR);
+            newDTO.setAnio(anio);
 
             //INSCRIPTOS
             java.math.BigInteger bigInteger = (BigInteger) fila[2];
-            int entero = bigInteger.intValue();
-            newDTO.setInscriptos((Integer) entero);
+            int entero = (Integer) bigInteger.intValue();
+            newDTO.setInscriptos(entero);
 
 
             //GRADUADOS
             java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
-            int entero2 = bigInteger2.intValue();
-            newDTO.setEgresados((Integer) entero2);
+            int entero2 = (Integer) bigInteger2.intValue();
+            newDTO.setEgresados(entero2);
 
             dtos.add(newDTO);
         }

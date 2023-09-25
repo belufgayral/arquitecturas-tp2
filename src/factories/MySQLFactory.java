@@ -29,8 +29,6 @@ public class MySQLFactory extends Factory{
     private static AlumnoCarreraRepository alumnoCarrera;
 
     private MySQLFactory(){
-        Date d1 = new Date(2026-1900,3-1,8);
-        Date d2 = new Date(2025-1900,3-1,8);
     	this.poblarTablaAlumnos();
     	this.poblarTablaCarreras();
     	this.poblarTablaAlumnosCarreras();
