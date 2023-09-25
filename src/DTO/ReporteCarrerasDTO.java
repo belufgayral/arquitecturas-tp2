@@ -2,13 +2,13 @@ package DTO;
 
 import java.util.Date;
 
-public class carreraAnioDTO {
+public class ReporteCarrerasDTO {
     private String nombreCarrera;
     private Date anio;
     private int regulares;
     private int egresados;
 
-    public carreraAnioDTO(String nombre, int egresados, int regulares, Date anio){
+    public ReporteCarrerasDTO(String nombre, int egresados, int regulares, Date anio){
         this.nombreCarrera = nombre;
         this.egresados = egresados;
         this.regulares = regulares;
@@ -46,4 +46,9 @@ public class carreraAnioDTO {
         this.regulares = regulares;
     }
 
+	@Override
+	public String toString() {
+		return "CarreraAnioDTO [nombreCarrera=" + nombreCarrera + ", anio=" + anio + ", regulares=" + regulares
+				+ ", egresados=" + egresados + "]";
+	}
 }

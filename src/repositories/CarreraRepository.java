@@ -1,7 +1,7 @@
 package repositories;
 
 import DTO.CarrerasInscriptosDTO;
-import DTO.carreraAnioDTO;
+import DTO.ReporteCarrerasDTO;
 import entities.Alumno;
 import entities.Carrera;
 import interfaces.InterfaceCarrera;
@@ -9,6 +9,7 @@ import interfaces.InterfaceCarrera;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -73,14 +74,26 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
         return carreras;
     }
 
-    //3)
-//    public List<carreraAnioDTO> reporteDeCarreras(){
-//        TypedQuery<carreraAnioDTO> query = ""
-//
-//
-//        List<carreraAnioDTO> carreras = query.getResultList();
-//        return carreras;
-//
-//    }
+    public List<ReporteCarrerasDTO> reporteDeCarreras(){
+    	String querysql = """
+    			SELECT nombre AS carrera, anio, MAX(cant_inscriptos) AS cant_inscriptos, MAX(cant_graduados) AS cant_egresados
+    			FROM (
+    			        SELECT c.nombre, YEAR(fechaGraduacion) as anio, COUNT(fechaGraduacion) AS cant_graduados, 0 AS cant_inscriptos
+    			        FROM Carrera c LEFT JOIN AlumnoCarrera ac ON ac.idcarrera = c.id
+    			        WHERE fechaGraduacion IS NOT NULL
+    			        GROUP BY c.id, fechaGraduacion
+    			        UNION (
+    			                SELECT c.nombre, YEAR(ac.fechaInscripcion), 0, COUNT(YEAR(ac.fechaInscripcion)) AS cant_inscriptos
+    			                FROM Carrera c LEFT JOIN AlumnoCarrera ac ON ac.idcarrera = c.id
+    			                GROUP BY c.id, YEAR(ac.fechaInscripcion))) graduados_inscriptos
+    			GROUP BY nombre, anio
+    			ORDER BY nombre, anio;
+    			""";
+    	
+        Query query = em.createNativeQuery(querysql);
+        List<ReporteCarrerasDTO> carreras = query.getResultList();
+        
+        return carreras;
+    }
 
 }

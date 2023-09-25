@@ -14,7 +14,7 @@ public class GeneradorDatos {
 		Alumno a1 = new Alumno("Agustin", "Menchon", new Date(1999-1900,07-1,12), "masculino", 41873051, "tandil",1234);
 	    Alumno a2 = new Alumno("belen", "Fernandez", new Date(1998-1900,3-1,8), "femenino", 51239817, "tandil", 12345);
 		Alumno a3 = new Alumno("Ezequiel", "Martinez", new Date(1998-1900,3-1,8), "masculino", 51239817, "tandil", 123456);
-		Alumno a4 = new Alumno("Tano", "123", new Date(2000-1900,3-1,8), "masculino", 51239817, "tandil", 1234567);
+		Alumno a4 = new Alumno("Tano", "Mengarelli Yespersen", new Date(2000-1900,3-1,8), "masculino", 51239817, "tandil", 1234567);
 	    
 	    List<Alumno> l = new ArrayList<Alumno>();
 	    
