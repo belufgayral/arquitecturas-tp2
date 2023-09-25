@@ -19,27 +19,22 @@ public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCar
         this.em=e;
     }
 
-    //problemas con este metodo.
+
     @Override
     public void matricularAlumno(Alumno a, Carrera c) {
         em.getTransaction().begin();
 
-        //AlumnoCarreraId acId = new AlumnoCarreraId(a, c);
         Date today = new Date(System.currentTimeMillis());
         AlumnoCarrera ac = new AlumnoCarrera(new AlumnoCarreraId(a, c), today,  false);
 
         em.persist(ac);
         em.getTransaction().commit();
-
-        //em.close();
     }
 
     @Override
     public void GraduarAlumno(Date today, AlumnoCarrera ac) {
         ac.setFechaGraduacion(today);
     }
-
-
 
     @Override
     public AlumnoCarrera buscarAlumnoID(AlumnoCarreraId id) {
@@ -49,7 +44,16 @@ public class AlumnoCarreraRepository implements InterfaceAlumnoCarrera<AlumnoCar
                 , AlumnoCarrera.class);
         query.setParameter("acId", id);
 
-        //return query.getResultList();
+        return query.getSingleResult();
+    }
+
+    public AlumnoCarrera buscarAlumnoID(int id) {
+        TypedQuery<AlumnoCarrera> query = em.createQuery("SELECT ac " +
+                        "FROM AlumnoCarrera ac " +
+                        "WHERE ac.id.alumno.id = :acId"
+                , AlumnoCarrera.class);
+        query.setParameter("acId", id);
+
         return query.getSingleResult();
     }
 }

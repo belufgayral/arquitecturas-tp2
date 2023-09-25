@@ -39,6 +39,7 @@ public class AlumnoCarrera {
 	}
 
 	public void setFechaGraduacion(Date fechaGraduacion) {
+		this.graduado = true;
 		this.fechaGraduacion = fechaGraduacion;
 	}
 
@@ -64,10 +65,15 @@ public class AlumnoCarrera {
 
 	@Override
 	public String toString() {
-		return "AlumnoCarrera{" +
-				"id=" + id +
-				", fechaInscripcion=" + fechaInscripcion +
-				", graduado=" + graduado +
-				'}';
+		String alumno = "AlumnoCarrera =>" +
+				" Nombre: " + id.getAlumno().getNombre() +
+				" " + id.getAlumno().getApellido() +
+				", Carrera: " + id.getCarrera().getNombre() +
+				", fechaInscripcion:" + fechaInscripcion +
+				", graduado:" + graduado;
+				if(fechaGraduacion!=null){
+					alumno+= ", fecha graduacion: " + fechaGraduacion;
+				}
+		return alumno;
 	}
 }

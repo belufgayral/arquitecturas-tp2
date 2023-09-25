@@ -101,9 +101,7 @@ public class MySQLFactory extends Factory{
         this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(1234567), this.getCarreraRepository().buscarCarreraPorNombre("economicas"));
 
         Alumno a1 = this.getAlumnoRepository().buscarAlumno(12345);
-        Carrera c1 = this.getCarreraRepository().buscarCarreraPorNombre("tudai");
-        AlumnoCarreraId acID1 = new AlumnoCarreraId(a1, c1);
-        AlumnoCarrera ac1 = this.getAlumnoCarreraRepository().buscarAlumnoID(acID1);
+        AlumnoCarrera ac1 = this.getAlumnoCarreraRepository().buscarAlumnoID(a1.getId());
 
         this.getAlumnoCarreraRepository().GraduarAlumno(new Date(2026-1900,3-1,8), ac1);
     }

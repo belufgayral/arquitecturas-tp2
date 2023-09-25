@@ -105,8 +105,8 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return "Alumno{" +
-				"nombre='" + nombre + '\'' +
+		return "Alumno =>" +
+				" nombre='" + nombre + '\'' +
 				", apellido='" + apellido + '\'' +
 				", fechaNacimiento=" + fechaNacimiento +
 				", genero='" + genero + '\'' +
