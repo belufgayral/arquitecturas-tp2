@@ -2,13 +2,13 @@ package DTO;
 
 import java.util.Date;
 
-public class DTOcarreraAnio {
+public class carreraAnioDTO {
     private String nombreCarrera;
     private Date anio;
-    private int egresados;
     private int regulares;
+    private int egresados;
 
-    public DTOcarreraAnio(String nombre, int egresados, int regulares, Date anio){
+    public carreraAnioDTO(String nombre, int egresados, int regulares, Date anio){
         this.nombreCarrera = nombre;
         this.egresados = egresados;
         this.regulares = regulares;

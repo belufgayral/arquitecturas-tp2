@@ -1,5 +1,7 @@
 package repositories;
 
+import DTO.CarrerasInscriptosDTO;
+import DTO.carreraAnioDTO;
 import entities.Alumno;
 import entities.Carrera;
 import interfaces.InterfaceCarrera;
@@ -22,17 +24,16 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
     	em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
-        //em.close();
     }
 
     @Override
     public void eliminarCarrera(Carrera c) {
-
+        //TODO
     }
 
     @Override
     public void updateCarrera(Carrera c) {
-
+    //TODO
     }
     
     public Carrera buscarCarreraPorNombre(String c) {
@@ -49,20 +50,37 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
 
     @Override
     public List<Carrera> listarCarreras() {
-        return null;
-    }
-
-    //no anda
-    public List<Carrera> listarCarrerasConAlumnosIncriptos() {
-       TypedQuery<Carrera> query = em.createQuery(
-               "SELECT c, COUNT(ac) AS inscriptos " +
-                "FROM Carrera c JOIN c.carrera ac " +
-                "WHERE ac.id.carrera = c " +
-                "GROUP BY c " +
-                "ORDER BY inscriptos DESC", Carrera.class);
+        TypedQuery<Carrera> query = em.createQuery(
+                "SELECT c " +
+                        "FROM Carrera c", Carrera.class);
 
         List<Carrera> carreras = query.getResultList();
 
         return carreras;
     }
+
+
+    //2)f)
+    public List<CarrerasInscriptosDTO> listarCarrerasConAlumnosIncriptos() {
+        TypedQuery<CarrerasInscriptosDTO> query = em.createQuery(
+                "SELECT NEW DTO.CarrerasInscriptosDTO(c.nombre, COUNT(ac.id.carrera)) " +
+                        "FROM AlumnoCarrera ac JOIN ac.id.carrera c " +
+                        "GROUP BY c " +
+                        "ORDER BY COUNT(ac.id.carrera) DESC", CarrerasInscriptosDTO.class);
+
+        List<CarrerasInscriptosDTO> carreras = query.getResultList();
+
+        return carreras;
+    }
+
+    //3)
+//    public List<carreraAnioDTO> reporteDeCarreras(){
+//        TypedQuery<carreraAnioDTO> query = ""
+//
+//
+//        List<carreraAnioDTO> carreras = query.getResultList();
+//        return carreras;
+//
+//    }
+
 }

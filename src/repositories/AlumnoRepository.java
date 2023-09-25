@@ -1,5 +1,6 @@
 package repositories;
 
+import DTO.AlumnoDTO;
 import entities.Alumno;
 import entities.Carrera;
 import interfaces.InterfaceAlumno;
@@ -34,7 +35,7 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
     public List<Alumno> listarAlumnos() {
         TypedQuery<Alumno> query = em.createQuery("SELECT a " +
                         "FROM Alumno a " +
-                        " ORDER BY a.nombre ASC "
+                        "ORDER BY a.nombre ASC "
                 , Alumno.class);
 
         List<Alumno> alumnos = query.getResultList();
@@ -67,16 +68,19 @@ public class AlumnoRepository implements InterfaceAlumno<Alumno> {
 
         return alumnos;
     }
-    public List<Alumno> listarAlumnosPorCarreraFiltradoPor(Carrera c,String ciudad) {
-        TypedQuery<Alumno> query = em.createQuery("SELECT a , count(ac) AS inscriptos " +
-                " FROM  Alumno a INNER JOIN AlumnoCarrera ac " +
-                " WHERE :cc = ac.carrera AND :ciudad = a.ciudad" +
-                " ORDER BY inscriptos DESC", Alumno.class);
 
-        query.setParameter("cc", c);
+    public List<AlumnoDTO> listarAlumnosPorCarreraFiltradoPor(Carrera c,String ciudad) {
+        TypedQuery<AlumnoDTO> query = em.createQuery(
+                "SELECT new DTO.AlumnoDTO(a.legajo, a.dni, a.nombre, a.apellido, a.ciudad, c.nombre) " +
+                "FROM AlumnoCarrera ac JOIN ac.id.alumno a JOIN ac.id.carrera c " +
+                "WHERE c.id = :cc AND a.ciudad  = :ciudad " +
+                "ORDER BY a.apellido DESC", AlumnoDTO.class);
+
+        query.setParameter("cc", c.getId());
         query.setParameter("ciudad", ciudad);
-        List<Alumno> alumnos = query.getResultList();
+        List<AlumnoDTO> alumnos = query.getResultList();
 
         return alumnos;
     }
+
 }

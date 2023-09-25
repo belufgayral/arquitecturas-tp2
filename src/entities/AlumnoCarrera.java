@@ -13,6 +13,8 @@ public class AlumnoCarrera {
 	private Date fechaInscripcion;
 	@Column
 	private boolean graduado;
+	@Column
+	private Date fechaGraduacion;
 	
 	public AlumnoCarrera() {
 		super();
@@ -23,6 +25,21 @@ public class AlumnoCarrera {
 		this.id = id;
 		this.fechaInscripcion = fechaInscripcion;
 		this.graduado = graduado;
+	}
+
+	public AlumnoCarrera(AlumnoCarreraId id, Date fechaInscripcion, boolean graduado, Date fechaGraduacion) {
+		this.id = id;
+		this.fechaInscripcion = fechaInscripcion;
+		this.graduado = graduado;
+		this.fechaGraduacion = fechaGraduacion;
+	}
+
+	public Date getFechaGraduacion() {
+		return fechaGraduacion;
+	}
+
+	public void setFechaGraduacion(Date fechaGraduacion) {
+		this.fechaGraduacion = fechaGraduacion;
 	}
 
 	public AlumnoCarreraId getId() {
@@ -43,5 +60,14 @@ public class AlumnoCarrera {
 
 	public void setGraduado(boolean graduado) {
 		this.graduado = graduado;
+	}
+
+	@Override
+	public String toString() {
+		return "AlumnoCarrera{" +
+				"id=" + id +
+				", fechaInscripcion=" + fechaInscripcion +
+				", graduado=" + graduado +
+				'}';
 	}
 }

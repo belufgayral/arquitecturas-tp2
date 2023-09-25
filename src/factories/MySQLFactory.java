@@ -92,7 +92,9 @@ public class MySQLFactory extends Factory{
     }
     
     public void poblarTablaAlumnosCarreras() {
-    	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(12345), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
     	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(1234), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
+    	this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(12345), this.getCarreraRepository().buscarCarreraPorNombre("tudai"));
+        this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(123456), this.getCarreraRepository().buscarCarreraPorNombre("sistemas"));
+        this.getAlumnoCarreraRepository().matricularAlumno(this.getAlumnoRepository().buscarAlumno(1234567), this.getCarreraRepository().buscarCarreraPorNombre("economicas"));
     }
 }
