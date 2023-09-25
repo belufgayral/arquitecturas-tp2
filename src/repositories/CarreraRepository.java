@@ -11,6 +11,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CarreraRepository implements InterfaceCarrera<Carrera> {
@@ -91,9 +94,31 @@ public class CarreraRepository implements InterfaceCarrera<Carrera> {
     			""";
     	
         Query query = em.createNativeQuery(querysql);
-        List<ReporteCarrerasDTO> carreras = query.getResultList();
+        List<Object[]> carreras = query.getResultList();
+
+        List<ReporteCarrerasDTO> dtos = new ArrayList<>();
+        for (Object[] fila:carreras){
+            ReporteCarrerasDTO newDTO = new ReporteCarrerasDTO();
+            newDTO.setNombreCarrera((String) fila[0]);
+
+            Date fecha = (Date) fila[1];
+            java.util.Calendar calendar = java.util.Calendar.getInstance();
+            calendar.setTime(fecha);
+            int anio = calendar.get(java.util.Calendar.YEAR);
+            newDTO.setAnio((Integer) anio);
+
+            java.math.BigInteger bigInteger = (BigInteger) fila[2];
+            int entero = bigInteger.intValue();
+            newDTO.setEgresados((Integer) entero);
+
+            java.math.BigInteger bigInteger2 = (BigInteger) fila[3];
+            int entero2 = bigInteger.intValue();
+            newDTO.setRegulares((Integer) entero2);
+
+            dtos.add(newDTO);
+        }
         
-        return carreras;
+        return dtos;
     }
 
 }

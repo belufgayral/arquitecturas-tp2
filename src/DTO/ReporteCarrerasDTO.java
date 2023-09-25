@@ -4,22 +4,26 @@ import java.util.Date;
 
 public class ReporteCarrerasDTO {
     private String nombreCarrera;
-    private Date anio;
+    private int anio;
     private int regulares;
     private int egresados;
 
-    public ReporteCarrerasDTO(String nombre, int egresados, int regulares, Date anio){
+    public ReporteCarrerasDTO(String nombre, int egresados, int regulares, int anio){
         this.nombreCarrera = nombre;
         this.egresados = egresados;
         this.regulares = regulares;
         this.anio = anio;
     }
 
+    public ReporteCarrerasDTO() {
+
+    }
+
     public String getNombreCarrera() {
         return nombreCarrera;
     }
 
-    public Date getAnio() {
+    public int getAnio() {
         return anio;
     }
     public int getEgresados() {
@@ -34,7 +38,7 @@ public class ReporteCarrerasDTO {
         this.nombreCarrera = nombreCarrera;
     }
 
-    public void setAnio(Date anio) {
+    public void setAnio(int anio) {
         this.anio = anio;
     }
 
